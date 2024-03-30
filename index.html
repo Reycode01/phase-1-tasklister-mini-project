@@ -21,7 +21,44 @@
       </ul>
     </div>
 
-    <script src="./src/index.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("create-task-form");
+        const taskList = document.getElementById("tasks");
+
+        form.addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent the default form submission behavior
+
+          // Get the value entered by the user in the input field
+          const taskDescription = document.getElementById("new-task-description").value;
+
+          // Create a new task element with the entered description
+          const taskElement = document.createElement("li");
+          taskElement.textContent = taskDescription;
+          // Create a delete button for the task
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "❌";
+    taskElement.appendChild(deleteButton);
+
+    // Append the new task element to the list of tasks in the DOM
+    taskList.appendChild(taskElement);
+
+    // Clear the input field after the task is added
+    document.getElementById("new-task-description").value = "";
+
+    // Set up event listener to handle task deletion
+    deleteButton.addEventListener("click", function() {
+      taskElement.remove(); // Remove the task element from the DOM
+
+          // Append the new task element to the list of tasks in the DOM
+          taskList.appendChild(taskElement);
+
+          // Clear the input field after the task is added
+          document.getElementById("new-task-description").value = "";
+        });
+      });
+      });
+    </script>
   </div>
 
 </body>
